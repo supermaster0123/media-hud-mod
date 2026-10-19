@@ -1,0 +1,59 @@
+// ============================================================
+//  build.gradle  -  Configuración de compilación del mod
+//  Minecraft 26.3 (sin ofuscar) -> NO hay línea "mappings" ni "modImplementation".
+// ============================================================
+plugins {
+	// En 26.1+ el plugin se llama "net.fabricmc.fabric-loom" (el viejo "fabric-loom" ya no sirve).
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+	// Aquí irían repositorios extra. Para este mod no hace falta ninguno.
+}
+
+dependencies {
+	// Minecraft (ya viene sin ofuscar, no se necesitan mappings).
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+
+	// Fabric Loader y Fabric API (ahora con "implementation" normal).
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// JNA: llamar a user32.dll (teclas multimedia) desde Java.
+	// OJO: Minecraft ya trae JNA en tiempo de ejecución, así que NO la empaquetamos
+	// dentro del mod (nada de "include"). La declaramos para que el IDE/compilador la vea.
+	implementation "net.java.dev.jna:jna:${project.jna_version}"
+}
+
+processResources {
+	inputs.property "version", project.version
+	filesMatching("fabric.mod.json") {
+		expand "version": inputs.properties.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	// Minecraft 26.1+ necesita Java 25.
+	it.options.release = 25
+}
+
+java {
+	withSourcesJar()
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	inputs.property "archivesName", project.base.archivesName
+	from("LICENSE") {
+		rename { "${it}_${inputs.properties.archivesName}" }
+	}
+}

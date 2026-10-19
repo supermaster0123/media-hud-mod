@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "com.supermaster0123.mediahud.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"PauseScreenMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

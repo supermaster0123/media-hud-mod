@@ -1,0 +1,56 @@
+# ===== Gradle =====
+.gradle/
+build/
+out/
+classes/
+!gradle/wrapper/gradle-wrapper.jar
+
+# ===== Fabric Loom / Minecraft de desarrollo =====
+run/
+runs/
+.architectury-transformer/
+logs/
+*.log
+hs_err_pid*.log
+replay_pid*.log
+
+# ===== IntelliJ IDEA =====
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea_modules/
+
+# ===== Eclipse =====
+.classpath
+.project
+.settings/
+bin/
+.metadata/
+
+# ===== VS Code =====
+.vscode/
+*.code-workspace
+
+# ===== NetBeans =====
+nbproject/private/
+nbbuild/
+nbdist/
+
+# ===== Sistema operativo (Windows y otros) =====
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+.DS_Store
+
+# ===== Archivos temporales y secretos =====
+*.tmp
+*.bak
+*.swp
+*~
+*.jks
+*.keystore
+local.properties
+.env

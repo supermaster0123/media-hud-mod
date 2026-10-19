@@ -1,0 +1,25 @@
+{
+	"schemaVersion": 1,
+	"id": "mediahud",
+	"version": "${version}",
+	"name": "Media HUD",
+	"description": "HUD multimedia para Windows: muestra y controla lo que suena (Apple Music, Spotify, navegador...) desde el menú de pausa.",
+	"authors": ["supermaster0123"],
+	"license": "MIT",
+	"environment": "client",
+	"entrypoints": {
+		"client": ["com.supermaster0123.mediahud.MediaHudMod"]
+	},
+	"mixins": [
+		{
+			"config": "mediahud.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
